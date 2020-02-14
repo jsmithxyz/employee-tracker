@@ -16,8 +16,55 @@ var connection = mysql.createConnection({
   database: "employee_trackerDB" 
 });
 
+//creates connection and runs application
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    connection.end();
+    runApp();
   });
+
+  function runApp() {
+    inquirer
+      .prompt({
+        name: "action",
+        type: "rawlist",
+        message: "What would you like to do?",
+        choices: [
+          "View All Employees",
+          "View All Employees by Department",
+          "Add Employee",
+          "Remove Employee",
+          "Update Employee Role",
+        ]
+      })
+      .then(function(answer) {
+        switch (answer.action) {
+        case "View All Employees":
+          allEmployees();
+          break;
+        case "View All Employees by Department":
+          allEmployeesByDepartment();
+          break;
+        case "Add Employee":
+          addEmployee();
+          break;
+        case "Delete Employee":
+          deleteEmployee();
+          break;
+        case "Update Employee Role":
+          updateRole();
+          break;
+        }
+      });
+  }
+
+  //function to view all employees
+  function allEmployees() {
+    console.log("Viewing all employees...\n");
+    connection.query("SELECT * FROM products", function(err, res) {
+      if (err) throw err;
+      // Log all results of the SELECT statement
+      console.log(res);
+      connection.end();
+    });
+  }

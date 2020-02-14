@@ -68,3 +68,26 @@ function allEmployees() {
             console.table('ALL EMPLOYEES', res);
         });
 }
+
+function allEmployeesByDepartment() {
+    inquirer.prompt({
+        name: "dept",
+        type: "rawlist",
+        message: "What department would you like to view?",
+        choices: [
+            "Sales",
+            "Engineering",
+            "Finance",
+            "Legal"
+        ]
+    })
+    .then(function (answer) {
+        connection.query(
+            "SELECT employee.id, first_name AS FIRSTNAME, last_name AS LASTNAME, title AS POSITION, name AS DEPARTMENT, salary as SALARY FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id WHERE department.name = ? ORDER BY title", [ answer.dept ], function (err, res) {
+                if (err) throw err;
+                // Log all results of the SELECT statement in table format
+                console.table('\nALL EMPLOYEES BY DEPARTMENT\n', res);
+            });
+    });
+}
+  

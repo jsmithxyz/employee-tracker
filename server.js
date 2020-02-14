@@ -35,6 +35,7 @@ function runApp() {
                 "Add Employee",
                 "Remove Employee",
                 "Update Employee Role",
+                "Exit Application"
             ]
         })
         .then(function (answer) {
@@ -54,6 +55,9 @@ function runApp() {
                 case "Update Employee Role":
                     updateRole();
                     break;
+                case "Exit Application":
+                    connection.end();
+                    break;
             }
         });
 }
@@ -66,6 +70,7 @@ function allEmployees() {
             if (err) throw err;
             // Log all results of the SELECT statement in table format
             console.table('ALL EMPLOYEES', res);
+            runApp();
         });
 }
 
@@ -87,6 +92,7 @@ function allEmployeesByDepartment() {
                 if (err) throw err;
                 // Log all results of the SELECT statement in table format
                 console.table('\nALL EMPLOYEES BY DEPARTMENT\n', res);
+                runApp();
             });
     });
 }

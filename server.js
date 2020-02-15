@@ -62,7 +62,7 @@ function runApp() {
                     deleteEmployee();
                     break;
                 case "Update Employee Role":
-                    updateRole();
+                    updateEmployeeRole();
                     break;
                 case "Exit Application":
                     connection.end();
@@ -146,13 +146,14 @@ function addEmployee() {
         });
 }
 
+//function to delete employee
 function deleteEmployee() {
 
     inquirer.prompt([
         {
             name: "removal",
             type: "list",
-            message: "What is this employee's position?",
+            message: "What employee would you like to remove?",
             choices: showemployees
         }
         ]).then(function (answer) {
@@ -167,6 +168,78 @@ function deleteEmployee() {
                 });
         });
 }
+
+
+    function addEmployee() {
+
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "firstname",
+                message: "What is the employee's first name?"
+            },
+            {
+                type: "input",
+                name: "lastname",
+                message: "What is the employee's last name?"
+            },
+            {
+                name: "position",
+                type: "list",
+                message: "What is this employee's position?",
+                choices: showroles
+            }
+            ]).then(function (answer) {
+                console.log(answer);
+                var query = connection.query(
+                    "INSERT INTO employee SET ?", 
+                    {
+                        first_name: answer.firstname,
+                        last_name: answer.lastname,
+                        role_id: answer.position,
+                      },
+                    function (err, res) {
+                        if (err) throw err;
+                        console.table("\nNew Employee Added Successfully!\n");
+                        runApp();
+                    });
+            });
+    }
+    
+    //function to update Employee role
+    function updateEmployeeRole() {
+    
+        inquirer.prompt([
+            {
+                name: "updateEmp",
+                type: "list",
+                message: "Which employee would you like to update?",
+                choices: showemployees
+            },
+            {
+                name: "updateRole",
+                type: "list",
+                message: "Which role would like you to assign to this employee?",
+                choices: showroles
+            }
+            ]).then(function (answer) {
+                console.log(answer);
+                var query = connection.query(
+                    "UPDATE employee SET ? WHERE ?", [
+                    {
+                        role_id: answer.updateRole
+                    },
+                    {
+                        id: answer.updateEmp
+                    }],
+                    function (err, res) {
+                        if (err) throw err;
+                        console.table("\nEmployee's Role has been Updated!\n");
+                        runApp();
+                    });
+            });
+    }
+
 
 
 

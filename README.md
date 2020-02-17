@@ -15,7 +15,7 @@ This application is designed to provide the ability of maintaining an employee d
     - 'Exit Application' - Exits Command Line Application.
 
 DEMO of Application Functionality:
-![](EmployeeTrackerDemo.mp4)
+![](EmployeeTrackerDemo.gif)
 
 ## Tech used
 - Node.js

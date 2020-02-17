@@ -17,6 +17,9 @@ This application is designed to provide the ability of maintaining an employee d
 DEMO of Application Functionality:
 ![](EmployeeTrackerDemo.gif)
 
+## SQL structure
+- see [Schema](https://github.com/jsmithxyz/employee-tracker/blob/master/schema.sql "Schema") file for database structure!
+
 ## Tech used
 - Node.js
 - Inquirer

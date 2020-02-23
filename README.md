@@ -9,7 +9,11 @@ This application is designed to provide the ability of maintaining an employee d
 - Invoking 'npm start' in this command-line application, the user will then be allowed to choose the following options and abilities:
     - 'View Employees' - Views all employees and their respective information and roles
     - 'View Employees by Dept' - Views employees based on department of choice by the user
+    - 'View All Departments' - Views all Departments at company
+    - 'View All Roles' - Views all Roles in company
     - 'Add Employee' - Allows User to provide First Name, Last Name, and role of a new employee
+    - 'Add Department' - Allows User to add a new Department
+    - 'Add Role' - Allows User to add a new Role
     - 'Delete Employee' - Allows User to remove Employee of their choosing
     - 'Update Employee Role' - Allows User to update an existing employee's position/role
     - 'Exit Application' - Exits Command Line Application.
